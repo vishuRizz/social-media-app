@@ -1,0 +1,14 @@
+.app-container{
+    display: flex;
+    min-height: 100%;
+}
+.content{
+    width: 100%;
+    
+}
+.sidebar-main{
+  min-height: 835px;
+}
+.footer-main{
+   
+}
