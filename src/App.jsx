@@ -9,12 +9,23 @@ import PostList from './components/PostList'
 
 function App() {
 
-  const [selectedTab, setSelectedTab] = useState('Home');
+  const [selectedTab, setSelectedTab] = useState('Create Post');
+/*
+ const handleSidebarButton = (e) => { 
 
+  console.log(e.target.innerHTML)
+  if(e.target.innerHTML === 'Create Post'){
+  setSelectedTab("Create Post")
+ } else if( e.target.innerHTML === 'Home'){
+  setSelectedTab('Home')
+ }
+  
+ } */
+   
   return (
   
     <div className='app-container'>
-    <Sidebar/>
+    <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab}  />
    <div className="content">
    <Header/>
    {selectedTab === 'Home' ? (<PostList/>) : (<CreatePost/>)}

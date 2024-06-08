@@ -15,7 +15,7 @@ function CreatePost() {
   </div>
   <div className="mb-3 form-check">
     <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label classNameName="form-check-label" for="exampleCheck1">Check me out</label>
+    <label className="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>

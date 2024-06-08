@@ -3,16 +3,16 @@ import React from 'react'
 function Footer() {
   return ( 
     <>
-   <div class="container footer-main">
-  <footer class="py-3 my-4 footer-content">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+   <div className="container footer-main">
+  <footer className="py-3 my-4 footer-content">
+    <ul className="pb-3 mb-3 nav justify-content-center border-bottom">
+      <li className="nav-item"><a href="#" className="px-2 nav-link text-body-secondary">Home</a></li>
+      <li className="nav-item"><a href="#" className="px-2 nav-link text-body-secondary">Features</a></li>
+      <li className="nav-item"><a href="#" className="px-2 nav-link text-body-secondary">Pricing</a></li>
+      <li className="nav-item"><a href="#" className="px-2 nav-link text-body-secondary">FAQs</a></li>
+      <li className="nav-item"><a href="#" className="px-2 nav-link text-body-secondary">About</a></li>
     </ul>
-    <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+    <p className="text-center text-body-secondary">© 2024 Company, Inc</p>
   </footer>
 </div>
     </>
