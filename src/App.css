@@ -10,5 +10,19 @@
   min-height: 100vh;
  
 }
-
+.custom-card{
+ margin: 20px 50px;
+ width: 30rem;
+ min-height: 10rem;
+}
+.custom-tags{
+    margin: 1px 5px;
+}
+.tags-container{
+    margin-top: 10px;
+}
+.reactions{
+    margin: 15px 0 0 0;
+  
+}
 
