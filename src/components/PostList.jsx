@@ -1,16 +1,16 @@
-import React from 'react'
-import Post from './Post'
+import { useContext } from "react";
+import Post from "./Post";
+import {PostListData} from "../store/Post-list-store";
 
-function PostList() {
+const PostList = () => {
+  const { postList } = useContext(PostListData);
   return (
-    <div className='post-list'>
-      <Post/>
-      <Post/>
-      <Post/>
-      <Post/>
-      <Post/>
-    </div>
-  )
-}
+    <>
+      {postList.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
+    </>
+  );
+};
 
-export default PostList
+export default PostList;
