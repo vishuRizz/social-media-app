@@ -1,26 +1,87 @@
-import React from 'react'
+import React, { useRef, createContext } from "react";
+import { PostListData } from "../store/Post-list-store";
+
 
 function CreatePost() {
+const {addPost} = createContext(PostListData)
+  
+  const userIdElement = useRef();
+  const titleElement = useRef();
+  const bodyElement = useRef();
+  const tagsElement = useRef();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+   const userId = userIdElement.current.value;
+   const title = titleElement.current.value;
+   const body = bodyElement.current.value;
+   const tags = tagsElement.current.value.split(/(\s+)/);
+   addPost(userId, title, body, tags);
+  }
+
   return (
     <div>
-      <form>
-  <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
-  </div>
-  <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-</form>
+      <form className="create-post" onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="userId" className="form-label">
+            Enter your User Id
+          </label>
+          <input
+            placeholder="User Id"
+            ref={userIdElement}
+            type="text"
+            className="form-control"
+            id="userId"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="tittle" className="form-label">
+            Post Tittle
+          </label>
+          <input
+            ref={titleElement}
+            placeholder="Enter Your Post Tittle"
+            type="text"
+            className="form-control"
+            id="title"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="body" className="form-label">
+            Post Body
+          </label>
+          <textarea
+            ref={bodyElement}
+            placeholder="Tell us about your post....."
+            type="text"
+            rows="4"
+            className="form-control"
+            id="body"
+            aria-describedby="emailHelp"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="tags" className="form-label">
+            #HashTags
+          </label>
+          <input
+            ref={tagsElement}
+            placeholder="Enter Tags"
+            type="text"
+            className="form-control"
+            id="tags"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
     </div>
-  )
+  );
 }
 
-export default CreatePost
+export default CreatePost;

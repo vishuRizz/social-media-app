@@ -8,7 +8,6 @@ import { createContext, useReducer } from "react";
 
 const postListReducer = (currPostList, action) => {
   let newPostList = currPostList;
-//  console.log(action.payload.postId)
   if (action.type === 'DELETE_ITEM') {
     console.log(action.payload.postId)
     newPostList = currPostList.filter(
@@ -16,21 +15,21 @@ const postListReducer = (currPostList, action) => {
     );
   }
 
-    return currPostList;
+    return newPostList;
 }
 
 const PostListProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, DEFAULT_POST_LIST);
 
- const addPost=()=>{ 
-
+ const addPost=(userId, title, body, tags)=>{ 
+console.log(`userid: ${userId}, title:${title}, body:${body}, ${tags}`)
  }
  const deletePost=(postId)=>{
  
   dispatchPostList({
     type: 'DELETE_ITEM',
     payload:{
-    postId,
+    postId: postId,
   }})
  }
 
@@ -42,11 +41,11 @@ const PostListProvider = ({ children }) => {
 };
 const DEFAULT_POST_LIST =[ {
     id: 1,
-    title: 'Going to mumbain',
+    title: ' Going to mumbai',
     body: 'i am vishu and going to mumbai for vacations, ill be going to many more places like goa and other places in maharashtra and also will try to go to hydrabad which is in telengana.', 
     reactions: 2,
     userId: 'user-9',
-    tags:["vacations", "trip"],
+    tags:["vacations", "trip", "heehee"],
 },
 {
     id: 2,
