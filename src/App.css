@@ -28,4 +28,10 @@
   width: 80%;
   margin-top: 50px;
   margin-left: 10%;
+} 
+.empty-message{
+  border: 2px solid black;
+  margin: 30px;
+  width: 60%;
+  text-align: center;
 }
