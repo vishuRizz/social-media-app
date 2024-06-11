@@ -3,8 +3,8 @@ import Post from "./Post";
 import { PostList as PostListData } from "../store/post-list-store";
 import EmptyMessage from "./EmptyMessage";
 
-const PostList = ({addApiPosts}) => {
-  const {postList}  = useContext(PostListData);
+const PostList = () => {
+  const {postList, addApiPosts}  = useContext(PostListData);
 
 
 function handleApiButton(){
