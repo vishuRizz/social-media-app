@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
- export const PostListData = createContext({
+export const PostList = createContext({
   postList: [],
   addPost: () => {},
   deletePost: () => {},
@@ -8,53 +8,69 @@ import { createContext, useReducer } from "react";
 
 const postListReducer = (currPostList, action) => {
   let newPostList = currPostList;
-  if (action.type === 'DELETE_ITEM') {
-    console.log(action.payload.postId)
+  if (action.type === "DELETE_POST") {
     newPostList = currPostList.filter(
       (post) => post.id !== action.payload.postId
     );
+  } else if (action.type === "ADD_POST") {
+    newPostList = [action.payload, ...currPostList];
   }
-
-    return newPostList;
-}
+  return newPostList;
+};
 
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(postListReducer, DEFAULT_POST_LIST);
+  const [postList, dispatchPostList] = useReducer(
+    postListReducer,
+    DEFAULT_POST_LIST
+  );
 
- const addPost=(userId, title, body, tags)=>{ 
-console.log(`userid: ${userId}, title:${title}, body:${body}, ${tags}`)
- }
- const deletePost=(postId)=>{
- 
-  dispatchPostList({
-    type: 'DELETE_ITEM',
-    payload:{
-    postId: postId,
-  }})
- }
+  const addPost = (userId, postTitle, postBody, reactions, tags) => {
+    dispatchPostList({
+      type: "ADD_POST",
+      payload: {
+        id: Date.now(),
+        title: postTitle,
+        body: postBody,
+        reactions: reactions,
+        userId: userId,
+        tags: tags,
+      },
+    });
+  };
 
-  return <PostListData.Provider value={{
-    postList: postList,
-    addPost: addPost,
-    deletePost: deletePost
-  }}>{children}</PostListData.Provider>;
+  const deletePost = (postId) => {
+    dispatchPostList({
+      type: "DELETE_POST",
+      payload: {
+        postId,
+      },
+    });
+  };
+
+  return (
+    <PostList.Provider value={{ postList, addPost, deletePost }}>
+      {children}
+    </PostList.Provider>
+  );
 };
-const DEFAULT_POST_LIST =[ {
-    id: 1,
-    title: ' Going to mumbai',
-    body: 'i am vishu and going to mumbai for vacations, ill be going to many more places like goa and other places in maharashtra and also will try to go to hydrabad which is in telengana.', 
+
+const DEFAULT_POST_LIST = [
+  {
+    id: "1",
+    title: "Going to Mumbai",
+    body: "Hi Friends, I am going to Mumbai for my vacations. Hope to enjoy a lot. Peace out.",
     reactions: 2,
-    userId: 'user-9',
-    tags:["vacations", "trip", "heehee"],
-},
-{
-    id: 2,
-    title: 'Going to college',
-    body: 'learnign react and advance concepts of react like contex api and useReducer', 
+    userId: "user-9",
+    tags: ["vacation", "Mumbai", "Enjoying"],
+  },
+  {
+    id: "2",
+    title: "Paas ho bhai",
+    body: "4 saal ki masti k baad bhi ho gaye hain paas. Hard to believe.",
     reactions: 15,
-    userId: 'user-12',
-    tags:["college", "react","learning"],
-}
-]
+    userId: "user-12",
+    tags: ["Graduating", "Unbelievable"],
+  },
+];
 
 export default PostListProvider;
